@@ -6,9 +6,6 @@ from credentials import *
 from Token import *
 
 dictionary = MultiDictionary()
-
-# BOT_TOKEN = "6701853868:AAF2XERaXsNIlhyRTEmZU85bBqSDoedmAQ8"
-
 bot = telebot.TeleBot(BOT_TOKEN)
 
 
@@ -38,6 +35,7 @@ def process_options(message):
 
 def process_synonym(message):
     bot.reply_to(message, "This is your synonym " + "\n" + get_syn(message.text))
+
 
 def process_meaning(message):
     bot.reply_to(message, "This is your meaning " + "\n" + get_mean(message.text))
