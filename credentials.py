@@ -1,6 +1,3 @@
-# bot_token = "6701853868:AAF2XERaXsNIlhyRTEmZU85bBqSDoedmAQ8"
-# bot_user_name = "https://t.me/superdict_bot"
-# URL = "the heroku app link that we will create later"
 from PyMultiDictionary import MultiDictionary
 from PyMultiDictionary import DICT_WORDNET
 
