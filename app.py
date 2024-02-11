@@ -5,6 +5,7 @@ from PyMultiDictionary import MultiDictionary
 from credentials import *
 from Token import *
 
+logging.basicConfig(level=logging.DEBUG,format='%(asctime)s %(levelname)s %(message)s')
 dictionary = MultiDictionary()
 bot = telebot.TeleBot(BOT_TOKEN)
 
@@ -19,7 +20,7 @@ def generate_menu():
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
     bot.reply_to(message, "Hi there, what word are you looking for?")
-    bot.send_message(message.chat.id, "Choose an option:", reply_markup=generate_menu())
+    bot.send_message(message.chat.id, "Choose an option:", reply_markup = generate_menu())
 
 
 @bot.message_handler(func=lambda message: True)
@@ -34,11 +35,11 @@ def process_options(message):
 
 
 def process_synonym(message):
-    bot.reply_to(message, "This is your synonym " + "\n" + get_syn(message.text))
+    bot.reply_to(message, "Result for your synonym search:" + "\n" + get_syn(message.text))
 
 
 def process_meaning(message):
-    bot.reply_to(message, "This is your meaning " + "\n" + get_mean(message.text))
+    bot.reply_to(message, "Result for your meaning search:" + "\n" + get_mean(message.text))
 
 
 bot.polling()
