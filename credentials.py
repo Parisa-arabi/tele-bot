@@ -17,9 +17,10 @@ def get_mean(word):
         return mean
     except Exception as e:
         logging.error(f"An error occurred: {str(e)}")
-        mean= word + ' is not valid ' + 'choose meanining and enter again'
-        return mean 
-    
+        mean = word + " is not valid " + "choose meanining and enter again"
+        return mean
+
+
 def get_syn(word):
     try:
         temp_syn = dictionary.synonym("en", word)
@@ -29,10 +30,12 @@ def get_syn(word):
         return syn
     except Exception as e:
         logging.error(f"An error occurred: {str(e)}")
-        syn = word + ' is not valid ' + 'choose synonym and enter again'
+        syn = word + " is not valid " + "choose synonym and enter again"
         return syn
-        
+
+
 # print(get_syn('jump'))
+
 
 def count_word(word):
     pass
