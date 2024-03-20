@@ -5,6 +5,7 @@ from PyMultiDictionary import MultiDictionary
 from credentials import *
 import configparser
 
+
 config = configparser.ConfigParser()
 config.read("config.ini")
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
@@ -40,12 +41,16 @@ def process_synonym(message):
     bot.reply_to(
         message, "Result for your synonym search:" + "\n" + get_syn(message.text)
     )
+    user_data(message)
+    # bot.register_next_step_handler(message, user_data)
+    # user_data(message)
 
 
 def process_meaning(message):
     bot.reply_to(
         message, "Result for your meaning search:" + "\n" + get_mean(message.text)
     )
+    user_data(message)
 
 
 bot.polling()

@@ -1,6 +1,7 @@
 from PyMultiDictionary import MultiDictionary
 from PyMultiDictionary import DICT_WORDNET
 import logging
+import json
 
 dictionary = MultiDictionary()
 
@@ -34,8 +35,25 @@ def get_syn(word):
         return syn
 
 
-# print(get_syn('jump'))
+def user_data(message):
+    with open("user_data.json", "r+") as f:
+        chat_id = str(message.chat.id)
+        data = json.load(f)
+        if chat_id in data:
+            if isinstance(data[chat_id]["word list"], str):
+                data[chat_id]["word list"] = [data[chat_id]["word list"]]
+            if message.text in data[chat_id]["word list"]:
+                total = data[chat_id]["word list"].count(message.text)
+                logging.info(f"count : {total+1}")
 
+            data[chat_id]["word list"].append(message.text)
+        else:
+            data[str(message.chat.id)] = {"word list": message.text}
+        f.seek(0)
+        json.dump(data, f, indent=4)
 
-def count_word(word):
-    pass
+def user_count(message):
+    with open('user_data.json', 'r+') as f:
+        chat_id = str(message.chat.id)
+        
+        
